@@ -1,0 +1,155 @@
+.container-xl {
+  background: rgba(255, 255, 255, 0.2); /* Subtle transparency */
+  backdrop-filter: blur(10px); /* Glass effect */
+  padding: 20px 20px;
+  border-radius: 16px;
+  margin: auto;
+  min-width: 97%;
+}
+
+/* Table Styling */
+.glass-table table {
+  background: rgba(255, 255, 255, 0.2); /* Subtle transparency */
+  backdrop-filter: blur(10px); /* Glass effect */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed; /* Ensures even column distribution */
+}
+
+.add-patient {
+  background-color: #eb1313;
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+  padding: 5px 15px;
+  border-radius: 16px;
+  border: none;
+}
+
+.add-patient:hover {
+  transition: 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+/* Header Styling */
+.glass-table thead {
+  background-color: #5c4033 !important; /* Dark brown */
+  color: rgb(214, 178, 105) !important; /* Gold */
+}
+
+.glass-table thead th:first-child {
+  border-top-left-radius: 20px;
+}
+
+.glass-table thead th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.glass-table thead th {
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 2px solid rgb(214, 178, 105); /* Adds separation */
+}
+
+/* Table Rows */
+.glass-table tbody tr {
+  transition: background-color 0.1s ease-in-out;
+}
+
+.glass-table tbody tr:hover {
+  background-color: rgba(168, 143, 90, 0.611); /* Light gold hover effect */
+}
+
+.glass-table tbody tr:last-child:hover td:last-child {
+  border-bottom-right-radius: 18px; /* Adjust as needed */
+}
+
+.glass-table tbody tr:last-child:hover td:first-child {
+  border-bottom-left-radius: 18px; /* Adjust as needed */
+}
+
+/* Table Cells */
+.glass-table tbody td {
+  padding: 10px;
+}
+
+/* Column Width Adjustments */
+.glass-table th:nth-child(3),  /* Age column */
+  .glass-table td:nth-child(3) {
+  width: 7%; /* Smaller width for Age */
+  min-width: 60px;
+}
+
+.glass-table th:nth-child(4),  /* Weight column */
+  .glass-table td:nth-child(4) {
+  width: 7%; /* Smaller width for Weight */
+  min-width: 60px;
+}
+
+/* Other Columns */
+.glass-table th,
+.glass-table td {
+  width: auto;
+  min-width: 100px; /* Ensures columns don't shrink too much */
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .glass-table {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .glass-table th,
+  .glass-table td {
+    min-width: 80px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  /* Reduce Age & Weight further on smaller screens */
+  .glass-table th:nth-child(3),
+  .glass-table td:nth-child(3),
+  .glass-table th:nth-child(4),
+  .glass-table td:nth-child(4) {
+    width: 10%;
+    min-width: 50px;
+  }
+}
+
+.delete-btn {
+  color: #eb1313;
+  background-color: #f48181a6;
+  border: none;
+  border-radius: 18px;
+  padding: 3px 10px;
+}
+
+.edit-btn {
+  color: #0d0dec;
+  background-color: #9898eea8;
+  border: none;
+  border-radius: 18px;
+  padding: 3px 10px;
+}
+
+.cancel-btn {
+  color: #6c757d;
+  background-color: #cbcfd283;
+  border: none;
+  border-radius: 18px;
+  padding: 3px 10px;
+}
+
+.save-btn {
+  color: #107d04;
+  background-color: #7ce37197;
+  border: none;
+  border-radius: 18px;
+  padding: 3px 10px;
+}

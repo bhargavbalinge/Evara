@@ -1,8 +1,26 @@
-#root {
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+} */
+/* Apply Kaushan Script to the entire website */
+/* Apply Merriweather to the entire website */
+body {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+  /* overflow-y: auto; */
+}
+
+/* Specific elements */
+h1,
+h2,
+h3,
+p,
+.navbar,
+.btn {
+  font-family: "Merriweather", serif;
 }
 
 .logo {
@@ -39,4 +57,20 @@
 
 .read-the-docs {
   color: #888;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #5c4033;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(220, 196, 143, 0.685);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4a2f25;
 }

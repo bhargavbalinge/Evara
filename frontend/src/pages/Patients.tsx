@@ -3,6 +3,8 @@ import { api } from "../api";
 import PatientForm from "./PatientForm";
 import PatientInfo from "./PatientInfo";
 import { Modal, Button, Card } from "react-bootstrap";
+import "../styles/Patients.css";
+import { Plus } from "lucide-react";
 
 interface Patient {
   _id: string;
@@ -76,11 +78,22 @@ const Patients = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <button className="btn btn-primary float-end" onClick={handleAdd}>
+    <div className="container-xl mt-5">
+      <button
+        className=" add-patient float-end"
+        onClick={handleAdd}
+        style={{ marginRight: "10px" }}
+      >
+        <Plus
+          size={20}
+          color="#fff"
+          style={{ marginRight: "5px", marginLeft: "-5px", fontSize: "20px" }}
+        ></Plus>
         Add Patient
       </button>
-      <h2>Patients</h2>
+      <h2 style={{ color: "#5c4033", fontWeight: "800", marginLeft: "10px" }}>
+        Patients
+      </h2>
 
       {patients.length === 0 ? (
         <Card className="text-center mt-4 p-4 shadow-sm">
@@ -96,53 +109,53 @@ const Patients = () => {
           </Card.Body>
         </Card>
       ) : (
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Gender</th>
-              <th>Age</th>
-              <th>Weight</th>
-              <th>Contact No.</th>
-              <th>Occupation</th>
-              <th>Address</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {patients.map((p, i) => (
-              <tr
-                key={i}
-                onClick={() => handleInfo(p)}
-                style={{ cursor: "pointer" }}
-              >
-                <td>{p.name}</td>
-                <td>{p.gender}</td>
-                <td>{p.age}</td>
-                <td>{p.weight}</td>
-                <td>{p.contactNo}</td>
-                <td>{p.occupation}</td>
-                <td>{p.address}</td>
-                <td
-                  onClick={(e) => e.stopPropagation()} // Prevent row click when clicking buttons
-                >
-                  <button
-                    className="btn btn-warning me-2"
-                    onClick={() => handleEdit(p)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-danger me-2"
-                    onClick={() => confirmDelete(p)}
-                  >
-                    Delete
-                  </button>
-                </td>
+        <div className="glass-table pt-4 rounded">
+          <table className="glass-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Weight</th>
+                <th>Contact No.</th>
+                <th>Occupation</th>
+                <th>Address</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {patients.map((p, i) => (
+                <tr
+                  key={i}
+                  onClick={() => handleInfo(p)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <td>{p.name}</td>
+                  <td>{p.gender}</td>
+                  <td>{p.age}</td>
+                  <td>{p.weight}</td>
+                  <td>{p.contactNo}</td>
+                  <td>{p.occupation}</td>
+                  <td>{p.address}</td>
+                  <td onClick={(e) => e.stopPropagation()}>
+                    <button
+                      className="edit-btn me-2"
+                      onClick={() => handleEdit(p)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => confirmDelete(p)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {showForm && (
@@ -166,7 +179,14 @@ const Patients = () => {
         onHide={() => setShowDeleteModal(false)}
         centered
       >
-        <Modal.Header closeButton>
+        <Modal.Header
+          style={{
+            backgroundColor: "#5c4033",
+            color: "rgb(214, 178, 105)",
+            padding: "8px 14px",
+          }}
+          closeButton
+        >
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -174,12 +194,15 @@ const Patients = () => {
           <strong>{patientToDelete?.name}</strong>?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+          <button
+            className="cancel-btn"
+            onClick={() => setShowDeleteModal(false)}
+          >
             Cancel
-          </Button>
-          <Button variant="danger" onClick={handleDelete}>
+          </button>
+          <button className="delete-btn" onClick={handleDelete}>
             Delete
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </div>

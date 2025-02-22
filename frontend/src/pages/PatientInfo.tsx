@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api";
+import "../styles/Patients.css";
 
 interface Patient {
   _id: string;
@@ -60,14 +61,38 @@ const PatientInfo = ({ patient, onClose }: Props) => {
     }
   };
 
+  useEffect(() => {
+    // Disable scrolling when the modal is open
+    document.body.style.overflow = "hidden";
+    return () => {
+      // Re-enable scrolling when the modal is closed
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div
-      className="modal show d-block"
-      style={{ background: "rgba(0,0,0,0.5)" }}
+      className="modal modal-lg show d-flex align-items-center justify-content-center vh-100"
+      style={{
+        background: "rgba(0,0,0,0.5)",
+        position: "fixed",
+        top: -60,
+        left: -23,
+        width: "100vw",
+        height: "100vh",
+        zIndex: 1050,
+      }}
     >
-      <div className="modal-dialog modal-lg">
+      <div className="modal-dialog">
         <div className="modal-content">
-          <div className="modal-header">
+          <div
+            className="modal-header"
+            style={{
+              backgroundColor: "#5c4033",
+              color: "rgb(214, 178, 105)",
+              padding: "8px 14px",
+            }}
+          >
             <h5 className="modal-title">{formData.name}</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
@@ -149,10 +174,10 @@ const PatientInfo = ({ patient, onClose }: Props) => {
                 </div>
 
                 <div className="d-flex justify-content-end">
-                  <button className="btn btn-primary" onClick={handleSave}>
+                  <button className="save-btn" onClick={handleSave}>
                     Save
                   </button>
-                  <button className="btn btn-secondary ms-2" onClick={onClose}>
+                  <button className="cancel-btn ms-2" onClick={onClose}>
                     Close
                   </button>
                 </div>
