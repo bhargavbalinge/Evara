@@ -84,7 +84,12 @@ const PatientInfo = ({ patient, onClose }: Props) => {
       }}
     >
       <div className="modal-dialog">
-        <div className="modal-content">
+        <div
+          className="modal-content"
+          style={{
+            borderRadius: "12px",
+          }}
+        >
           <div
             className="modal-header"
             style={{
@@ -96,7 +101,15 @@ const PatientInfo = ({ patient, onClose }: Props) => {
             <h5 className="modal-title">{formData.name}</h5>
             <button className="btn-close" onClick={onClose}></button>
           </div>
-          <div className="modal-body">
+          <div
+            className="modal-body"
+            style={{
+              backgroundColor: "rgb(214, 178, 105)",
+              color: " #5c4033",
+              borderBottomLeftRadius: "12px",
+              borderBottomRightRadius: "12px",
+            }}
+          >
             {loading ? (
               <p>Loading patient data...</p>
             ) : (
@@ -112,6 +125,11 @@ const PatientInfo = ({ patient, onClose }: Props) => {
                         className="form-control"
                         value={formData.history || ""}
                         onChange={handleChange}
+                        style={{
+                          backgroundColor: "rgba(92, 64, 51, 0.4)",
+                          color: "rgb(255, 255, 255)",
+                          border: "none",
+                        }}
                       />
                     </div>
 
@@ -123,6 +141,11 @@ const PatientInfo = ({ patient, onClose }: Props) => {
                         className="form-control"
                         value={formData.bp || ""}
                         onChange={handleChange}
+                        style={{
+                          backgroundColor: "rgba(92, 64, 51, 0.4)",
+                          color: "rgb(255, 255, 255)",
+                          border: "none",
+                        }}
                       />
                     </div>
 
@@ -134,6 +157,11 @@ const PatientInfo = ({ patient, onClose }: Props) => {
                         className="form-control"
                         value={formData.pulse || ""}
                         onChange={handleChange}
+                        style={{
+                          backgroundColor: "rgba(92, 64, 51, 0.4)",
+                          color: "rgb(255, 255, 255)",
+                          border: "none",
+                        }}
                       />
                     </div>
 
@@ -148,6 +176,11 @@ const PatientInfo = ({ patient, onClose }: Props) => {
                         className="form-control"
                         value={formData.rr || ""}
                         onChange={handleChange}
+                        style={{
+                          backgroundColor: "rgba(92, 64, 51, 0.4)",
+                          color: "rgb(255, 255, 255)",
+                          border: "none",
+                        }}
                       />
                     </div>
 
@@ -158,6 +191,11 @@ const PatientInfo = ({ patient, onClose }: Props) => {
                         className="form-control"
                         value={formData.complaint || ""}
                         onChange={handleChange}
+                        style={{
+                          backgroundColor: "rgba(92, 64, 51, 0.4)",
+                          color: "rgb(255, 255, 255)",
+                          border: "none",
+                        }}
                       ></textarea>
                     </div>
 
@@ -168,6 +206,11 @@ const PatientInfo = ({ patient, onClose }: Props) => {
                         className="form-control"
                         value={formData.therapy || ""}
                         onChange={handleChange}
+                        style={{
+                          backgroundColor: "rgba(92, 64, 51, 0.4)",
+                          color: "rgb(255, 255, 255)",
+                          border: "none",
+                        }}
                       ></textarea>
                     </div>
                   </div>

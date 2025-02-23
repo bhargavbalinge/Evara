@@ -5,6 +5,8 @@ import PatientInfo from "./PatientInfo";
 import { Modal, Button, Card } from "react-bootstrap";
 import "../styles/Patients.css";
 import { Plus } from "lucide-react";
+import Loader from "../components/Loader";
+import Pagination from "../components/Pagination";
 
 interface Patient {
   _id: string;
@@ -31,9 +33,10 @@ const Patients = () => {
   const [editingPatient, setEditingPatient] = useState<Patient | undefined>(
     undefined
   );
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [patientToDelete, setPatientToDelete] = useState<Patient | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const patientsPerPage = 10;
 
   useEffect(() => {
     fetchPatients();
@@ -43,6 +46,11 @@ const Patients = () => {
     const res = await api.get<Patient[]>("/patients");
     setPatients(res.data);
   };
+
+  const totalPages = Math.ceil(patients.length / patientsPerPage);
+  const startIndex = (currentPage - 1) * patientsPerPage;
+  const endIndex = startIndex + patientsPerPage;
+  const displayedPatients = patients.slice(startIndex, endIndex);
 
   const handleAdd = () => {
     setEditingPatient(undefined);
@@ -76,9 +84,16 @@ const Patients = () => {
     setSelectedPatient(patient);
     setShowInfo(true);
   };
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <div className="container-xl mt-5">
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 300); // Show loader for at least 2s
+  }, []);
+
+  return loading ? (
+    <Loader />
+  ) : (
+    <div className="container-xl mt-5 mb-4">
       <button
         className=" add-patient float-end"
         onClick={handleAdd}
@@ -86,7 +101,7 @@ const Patients = () => {
       >
         <Plus
           size={20}
-          color="#fff"
+          color="#000000"
           style={{ marginRight: "5px", marginLeft: "-5px", fontSize: "20px" }}
         ></Plus>
         Add Patient
@@ -124,7 +139,7 @@ const Patients = () => {
               </tr>
             </thead>
             <tbody>
-              {patients.map((p, i) => (
+              {displayedPatients.map((p, i) => (
                 <tr
                   key={i}
                   onClick={() => handleInfo(p)}
@@ -155,6 +170,13 @@ const Patients = () => {
               ))}
             </tbody>
           </table>
+          <div className="d-flex justify-content-end mt-3  mx-3">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          </div>
         </div>
       )}
 
