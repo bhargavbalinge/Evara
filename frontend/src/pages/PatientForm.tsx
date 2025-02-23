@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { api } from "../api";
+import "../styles/Patients.css";
 
 interface Patient {
   _id?: string;
@@ -70,7 +71,12 @@ const PatientForm = ({ patient, onClose, onSave }: Props) => {
       }}
     >
       <div className="modal-dialog modal-lg">
-        <div className="modal-content">
+        <div
+          className="modal-content"
+          style={{
+            borderRadius: "12px",
+          }}
+        >
           <div
             className="modal-header"
             style={{
@@ -82,12 +88,23 @@ const PatientForm = ({ patient, onClose, onSave }: Props) => {
             <h5 className="modal-title">
               {patient ? `${patient.name}` : "Add Patient"}
             </h5>
-            <button className="btn-close" onClick={onClose}></button>
+            <button
+              className="btn-close crossButton"
+              onClick={onClose}
+            ></button>
           </div>
-          <div className="modal-body">
+          <div
+            className="modal-body"
+            style={{
+              backgroundColor: "rgb(214, 178, 105)",
+              color: " #5c4033",
+              borderBottomLeftRadius: "12px",
+              borderBottomRightRadius: "12px",
+            }}
+          >
             <form onSubmit={handleSubmit}>
               <div className="row">
-                <div className="col-md-4 mb-2">
+                <div className="col-md-4 mb-2 custom-input">
                   <label className="form-label">Name</label>
                   <input
                     type="text"
@@ -96,6 +113,11 @@ const PatientForm = ({ patient, onClose, onSave }: Props) => {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    style={{
+                      backgroundColor: "rgba(92, 64, 51, 0.4)",
+                      color: "rgb(255, 255, 255)",
+                      border: "none",
+                    }}
                   />
                 </div>
                 <div className="col-md-4 mb-2">
@@ -106,6 +128,11 @@ const PatientForm = ({ patient, onClose, onSave }: Props) => {
                     value={formData.gender}
                     onChange={handleChange}
                     required
+                    style={{
+                      backgroundColor: "rgba(92, 64, 51, 0.4)",
+                      color: "rgb(255, 255, 255)",
+                      border: "none",
+                    }}
                   >
                     <option value="">Select Gender</option>
                     <option value="Male">Male</option>
@@ -121,6 +148,11 @@ const PatientForm = ({ patient, onClose, onSave }: Props) => {
                     value={formData.age}
                     onChange={handleChange}
                     required
+                    style={{
+                      backgroundColor: "rgba(92, 64, 51, 0.4)",
+                      color: "rgb(255, 255, 255)",
+                      border: "none",
+                    }}
                   />
                 </div>
                 <div className="col-md-4 mb-2">
@@ -132,17 +164,33 @@ const PatientForm = ({ patient, onClose, onSave }: Props) => {
                     value={formData.weight}
                     onChange={handleChange}
                     required
+                    style={{
+                      backgroundColor: "rgba(92, 64, 51, 0.4)",
+                      color: "rgb(255, 255, 255)",
+                      border: "none",
+                    }}
                   />
                 </div>
                 <div className="col-md-4 mb-2">
                   <label className="form-label">Contact No</label>
                   <input
-                    type="text"
+                    type="number"
                     name="contactNo"
                     className="form-control"
                     value={formData.contactNo}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, ""); // Allow only digits
+                      if (value.length <= 10) {
+                        handleChange(e); // Update state only if within limit
+                      }
+                    }}
                     required
+                    maxLength={10}
+                    style={{
+                      backgroundColor: "rgba(92, 64, 51, 0.4)",
+                      color: "rgb(255, 255, 255)",
+                      border: "none",
+                    }}
                   />
                 </div>
                 <div className="col-md-4 mb-2">
@@ -154,6 +202,11 @@ const PatientForm = ({ patient, onClose, onSave }: Props) => {
                     value={formData.occupation}
                     onChange={handleChange}
                     required
+                    style={{
+                      backgroundColor: "rgba(92, 64, 51, 0.4)",
+                      color: "rgb(255, 255, 255)",
+                      border: "none",
+                    }}
                   />
                 </div>
                 <div className="col-md-12 mb-2">
@@ -165,6 +218,11 @@ const PatientForm = ({ patient, onClose, onSave }: Props) => {
                     value={formData.address}
                     onChange={handleChange}
                     required
+                    style={{
+                      backgroundColor: "rgba(92, 64, 51, 0.4)",
+                      color: "rgb(255, 255, 255)",
+                      border: "none",
+                    }}
                   />
                 </div>
               </div>

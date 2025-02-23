@@ -43,7 +43,7 @@ const Navbar = () => {
                 style={{
                   ...getActiveStyle("/"),
                   fontWeight: 700,
-                  fontSize: "20px",
+                  fontSize: "16px",
                   marginRight: "8px",
                 }}
               >
@@ -57,7 +57,7 @@ const Navbar = () => {
                 style={{
                   ...getActiveStyle("/patients"),
                   fontWeight: 700,
-                  fontSize: "20px",
+                  fontSize: "16px",
                 }}
               >
                 Patients
